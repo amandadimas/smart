@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orçamento - Smart</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      .orcamento-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: #f8fafc;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .orcamento-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .orcamento-header h2 {
+        color: #1e293b;
+      }
+
+      .orcamento-lista ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .orcamento-lista li {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 0;
+        border-bottom: 1px solid #cbd5e1;
+      }
+
+      .orcamento-total {
+        text-align: right;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-top: 1rem;
+      }
+
+      .btn-voltar {
+        display: inline-block;
+        background-color: red;
+        color: red;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .btn-voltar:hover {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <header
+      class="flex text-xl bg-slate-950 shadow-xl shadow-slate-400 px-8 py-4 justify-between sticky top-0 z-10"
+    >
+      <a href="./">
+        <img
+          class="h-12"
+          src="./assets/logo/logoSmart.png"
+          alt="Logo do Magazine Hashtag."
+        />
+      </a>
+    </header>
+
+    <main class="orcamento-container">
+      <div class="orcamento-header">
+        <h2>Resumo do Orçamento</h2>
+      </div>
+
+      <section id="orcamento-detalhes" class="orcamento-lista">
+        <ul id="lista-orcamento">
+         
+        </ul>
+      </section>
+
+      <div class="orcamento-total">
+        <p>Total: R$ <span id="orcamento-total">0,00</span></p>
+      </div>
+
+      <div class="text-center">
+        <a href="./home.html" class="btn-voltar">Voltar para a Loja</a>
+      </div>
+      
+     
+      <div class="text-center">
+        <button id="btn-encaminhar-orcamento" class="bg-blue-500 text-white p-2 mt-4 rounded-lg">Encaminhar Orçamento</button>
+      </div>
+      
+    </main>
+
+    <script type="module" src="./orcamento.js"></script>
+  </body>
+</html>
