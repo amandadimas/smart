@@ -13,7 +13,7 @@ export function renderizarCatalogo() {
         />
         <p class='text-sm'>${produtoCatalogo.marca}</p>
         <p class='text-sm'>${produtoCatalogo.nome}</p>
-        <p class='text-sm'>$${produtoCatalogo.preco}</p>
+        <p class='text-sm'>R$${produtoCatalogo.preco}</p>
         <button id='adicionar-${
           produtoCatalogo.id
         }' class='bg-slate-950 hover:bg-slate-700 text-slate-200'

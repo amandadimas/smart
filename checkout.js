@@ -1,18 +1,16 @@
+import { atualizarPrecoCarrinho } from "./src/menuCarrinho";
 import {
   apagarDoLocalStorage,
   desenharProdutoCarrinhoSimples,
   lerLocalStorage,
   salvarLocalStorage,
 } from "./src/utilidades";
-import { atualizarPrecoCarrinho } from "./src/menuCarrinho";
 
-// Função para obter detalhes de um produto por ID
 function obterDetalhesProduto(idProduto) {
   const produtos = lerLocalStorage("produtosDetalhes") ?? {};
   return produtos[idProduto] || null;
 }
 
-// Função para desenhar os produtos no checkout
 function desenharProdutosCheckout() {
   const idsProdutoCarrinhoComQuantidade = lerLocalStorage("carrinho") ?? {};
   for (const idProduto in idsProdutoCarrinhoComQuantidade) {
@@ -24,9 +22,7 @@ function desenharProdutosCheckout() {
   }
 }
 
-// Função para calcular e retornar o valor total
 function calcularValorTotal() {
-  // Atualizar o preço do carrinho (valor dos produtos)
   atualizarPrecoCarrinho();
 
   // Obter o valor do serviço (orçamento) inserido pelo usuário
@@ -36,13 +32,13 @@ function calcularValorTotal() {
 
   // Obter o total calculado pelo atualizarPrecoCarrinho
   const precoCarrinho = document.getElementById("preco-total");
-  const precoTotalCarrinho = parseFloat(precoCarrinho.innerText.replace('Total: $', '').replace(',', '.'));
+  const precoTotalCarrinho = parseFloat(precoCarrinho.innerText.replace('Total: R$', '').replace(',', '.'));
 
   // Somar o valor do orçamento com o total dos produtos
   const totalFinal = precoTotalCarrinho + valorServico;
 
   // Exibir o total final (produtos + serviço)
-  precoCarrinho.innerText = `Total: $${totalFinal.toFixed(2)}`;
+  precoCarrinho.innerText = `Total: R$ ${totalFinal.toFixed(2)}`;
 
   // Retornar o total final para ser utilizado no pedido
   return totalFinal;

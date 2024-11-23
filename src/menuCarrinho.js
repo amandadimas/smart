@@ -1,4 +1,4 @@
-import { catalogo, salvarLocalStorage, lerLocalStorage } from "./utilidades";
+import { catalogo, lerLocalStorage, salvarLocalStorage } from "./utilidades";
 
 const idsProdutoCarrinhoComQuantidade = lerLocalStorage("carrinho") ?? {};
 
@@ -150,6 +150,6 @@ export function atualizarPrecoCarrinho() {
     }
   }
   
-  precoCarrinho.innerText = `Total: $${precoTotalCarrinho.toFixed(2)}`; 
+  precoCarrinho.innerText = `Total: R$${precoTotalCarrinho.toFixed(2)}`;
 }
 

@@ -22,7 +22,7 @@ function criarUsuarioNoLocalStorage(username, password) {
       return { success: false, message: 'Usuário não encontrado' };
     }
 
-    if (usuario.password !== btoa(password)) { // Decrypta com 'atob' para comparar
+    if (usuario.password !== btoa(password)) { 
       return { success: false, message: 'Senha incorreta' };
     }
 
@@ -36,10 +36,8 @@ function criarUsuarioNoLocalStorage(username, password) {
     const resultado = autenticarUsuario(username, password);
   
     if (resultado.success) {
-      // Salva os dados do usuário autenticado, pode ser um token ou qualquer coisa
       localStorage.setItem('usuarioAutenticado', JSON.stringify(resultado.usuario));
   
-      // Redireciona para a página home
       window.location.href = './home.html';
     } else {
       alert(resultado.message);

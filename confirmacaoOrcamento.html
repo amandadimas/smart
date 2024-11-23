@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Confirmação do Orçamento</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script> <!-- html2pdf.js CDN -->
+  
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -94,83 +95,279 @@
   </div>
 
   <script>
-     // Função para ler o localStorage
-  function lerLocalStorage(chave) {
-    return JSON.parse(localStorage.getItem(chave));
-  }
+    const catalogo = [
+  {
+    id: "1",
+    marca: "Movimento",
+    nome: "Motor Basculante 220v 1/4 BM12 Calha 1,50m com 2 Controles",
+    preco: 1150,
+    imagem: "motor_basculante.jpeg", 
+    produtoComprar: true,
+  },
+  {
+    id: "2",
+    marca: "Intelbras",
+    nome: "Sensor de Presença para Iluminação ESPI 360 A Branco",
+    preco: 35,
+    imagem: "sensor_presenca_branco.jpeg", 
+    produtoComprar: true,
+  },
+  {
+    id: "3",
+    marca: "Intelbras",
+    nome: "Sensor De Presença Espi 360 Para Iluminação",
+    preco: 35,
+    imagem: "sensor_presenca_iluminacao.jpeg", 
+    produtoComprar: true,
+  },
+  {
+    id: "4",
+    marca: "Intelbras",
+    nome: "Sensor Infravermelho Passivo IVP Com Fio - 3000 Cf",
+    preco: 45,
+    imagem: "sensor_presenca_infravermelho.jpeg", 
+    produtoComprar: true,
+  },
+  {
+    id: "5",
+    marca: "Intelbras",
+    nome: "Sensor De Abertura S/ Fio Msa 1001", 
+    preco: 75,
+    imagem: "sensorAbertura.jpeg", 
+    produtoComprar: true,
+  },
+  {
+    id: "6",
+    marca: "Intelbras",
+    nome: "Vídeo Porteiro Wi-Fi Allo W3",
+    preco: 480,
+    imagem: "video_porteiro.jpeg", 
+    produtoComprar: true,
+  },
+  {
+    id: "7",
+    marca: "Intelbras",
+    nome: "Interfone Inteligente com Câmera e Áudio Wi-Fi - Visão Noturna e Sem Fio",
+    preco: 140,
+    imagem: "interfone.jpeg", 
+    produtoComprar: true,
+  },
+  {
+    id: "8",
+    marca: "Intelbras",
+    nome: "Videoporteiro Wi-fi Allo wT7 Lite",
+    preco: 1400,
+    imagem: "video_porteirowt7.jpeg", 
+    produtoComprar: true,
+  },
+  {
+    id: "9",
+    marca: "Marca Movimento",
+    nome: "Motor Portão Deslizante 220v DM08",
+    preco: 900,
+    imagem: "motor.jpeg", 
+    produtoComprar: true,
+  },
+{
+    id: "10",
+    marca: "Alarme",
+    nome: "Instalação de Alarme de Segurança",
+    preco: 1150,
+    imagem: "alarme2.jpeg", 
+    servico: true,
+  },
+  {
+    id: "11",
+    marca: "Antena",
+    nome: "Instalação de Antenas",
+    preco: 0,
+    imagem: "antena.jpeg", 
+    servico: true,
+  },
+  {
+    id: "12",
+    marca: "Câmera",
+    nome: "Instalação de câmera de Segurança",
+    preco: 0,
+    imagem: "camera.jpeg", 
+    servico: true,
+  },
+  {
+    id: "13",
+    marca: "Intelbras",
+    nome: "Sensor De Abertura S/ Fio Msa 1001",
+    preco: 75,
+    imagem: "sensorAbertura.jpeg", 
+    produtoComprar: false,
+  },
+  {
+    id: "14",
+    marca: "Para-raios",
+    nome: "Instalação de Para-raios",
+    preco: 0,
+    imagem: "paraRaios.jpeg", 
+    servico: true,
+  },
+  {
+    id: "15",
+    marca: "Eletricista",
+    nome: "Serviço de Eletricista Residencial",
+    preco: 0,
+    imagem: "eletricista.jpeg", 
+    servico: true,
+  },
+{
+    id: "16",
+    marca: "Intelbras",
+    nome: "Câmera VHL 1120 B HD 720p Sensor 1/2.7 Lente 3.6mm HDCVI Lite Menu OSD 20M IR - 1120B",
+    preco: 125,
+    imagem: "camera_sensor.jpeg", 
+    produtoComprar: true,
+  },
+{
+    id: "17",
+    marca: "Intelbras",
+    nome: "Câmera Infravermelho Multi Hd VHD 1220 D G7",
+    preco: 160,
+    imagem: "camera_infravermelho_multi.jpeg", 
+    produtoComprar: true,
+  },
+{
+    id: "18",
+    marca: "Intelbras",
+    nome: "Kit Cftv 4 Cameras Segurança 1080p Full Hd Dvr 4ch",
+    preco: 950,
+    imagem: "kit4_cameras.jpeg", 
+    produtoComprar: true,
+  },
+{
+    id: "19",
+    marca: "Intelbras",
+    nome: "Kit Cftv 6 Cameras Segurança 1080p Full Hd Dvr 1TB",
+    preco: 1300,
+    imagem: "kit6_cameras.jpeg", 
+    produtoComprar: true,
+  },
+{
+    id: "20",
+    marca: "Intelbras",
+    nome: "Kit Cftv 10 Câmeras Segurança Full Hd 1080 Dvr 2TB",
+    preco: 1900,
+    imagem: "kit10_cameras.jpeg", 
+    produtoComprar: true,
+  },
+{
+    id: "21",
+    marca: "Intelbras",
+    nome: "DVR 8 Canais MHDX 1008-C - Multi HD - IP, HDCVI, HDTVI e AHD - ONVIF",
+    preco: 650,
+    imagem: "dvr8.jpeg", 
+    produtoComprar: true,
+  },
+{
+    id: "22",
+    marca: "Intelbras",
+    nome: "Kit de Alarme AMT 2018 E com 13 Sensores com Monitoramento Por Aplicativo via Internet",
+    preco: 1600,
+    imagem: "kit_alarme.jpeg", 
+    produtoComprar: true,
+  },
+{
+    id: "23",
+    marca: "Intelbras",
+    nome: "Sirene Sir 1000 105 Db Sistema de Segurança",
+    preco: 45,
+    imagem: "sirene.jpeg", 
+    produtoComprar: true,
+  },
+{
+    id: "24",
+    marca: "Intelbras",
+    nome: "Bateria Selada para Central de Alarme 7A - 12V",
+    preco: 85,
+    imagem: "bateria_selada.jpeg",
+    produtoComprar: true,
+  },
+];
 
-  // Função para obter detalhes de um produto por ID
-  function obterDetalhesProduto(idProduto) {
-    const produtos = lerLocalStorage("produtosDetalhes") ?? {};
-    return produtos[idProduto] || { nome: "Produto desconhecido", preco: 0 };  // Garantir que retorne um valor padrão caso o produto não seja encontrado
-  }
 
-  // Função para preencher os dados do pedido na tela de confirmação
-  function preencherDadosPedido() {
-    const pedido = lerLocalStorage("pedidoAtual");
-
-    if (pedido) {
-      // Exibir dados do cliente
-      document.getElementById('cliente-nome').textContent = pedido.cliente.nome || "Não informado";
-      document.getElementById('cliente-email').textContent = pedido.cliente.email || "Não informado";
-      document.getElementById('cliente-telefone').textContent = pedido.cliente.telefone || "Não informado";
-
-      // Exibir produtos
-      const produtosLista = document.getElementById('produtos-lista');
-      produtosLista.innerHTML = ""; // Limpar lista antes de desenhar
-      for (const idProduto in pedido.pedido) { 
-        const quantidade = pedido.pedido[idProduto];
-        const produto = obterDetalhesProduto(idProduto);
-        if (produto && quantidade) {
-          console.log("entrou");
-          const item = document.createElement('div');
-          item.textContent = `${produto.nome} (Quantidade: ${quantidade}), Preço Unitário: $${produto.preco.toFixed(2)}, Subtotal: $${(produto.preco * quantidade).toFixed(2)}`;
-          produtosLista.appendChild(item);
-        }
-      }
-
-      // Exibir serviços
-      const servicosLista = document.getElementById('servicos-lista');
-      servicosLista.innerHTML = ""; // Limpar lista antes de desenhar
-      pedido.servicos.forEach(servico => {
-        const item = document.createElement('div');
-        item.textContent = `${servico.nome}: $${servico.preco.toFixed(2)}`;
-        servicosLista.appendChild(item);
-      });
-
-      // Exibir valor total
-      document.getElementById('valor-total').textContent = `Total: $${pedido.valorTotal.toFixed(2)}`;
-    } else {
-      alert("Erro: Pedido não encontrado.");
+    // Função para ler o localStorage
+    function lerLocalStorage(chave) {
+      return JSON.parse(localStorage.getItem(chave));
     }
-  }
 
-  // Função para gerar o PDF com html2pdf.js
-  document.getElementById('download-pdf').addEventListener('click', function () {
-    const container = document.getElementById('orcamento-container');
-    
-    // Ocultar os botões antes de gerar o PDF
-    const botoes = document.querySelectorAll('.btn-voltar, .btn-download');
-    botoes.forEach(botao => botao.style.display = 'none');
+    // Função para obter detalhes de um produto por ID
+    function obterDetalhesProduto(idProduto) {
+      const produto = catalogo.find((produto) => produto.id == idProduto);
+      return produto || { nome: "Produto desconhecido", preco: 0 };  // Garantir que retorne um valor padrão caso o produto não seja encontrado
+    }
 
-    // Configurações do html2pdf
-    const opt = {
-      margin:       1,
-      filename:     'orcamento.pdf',
-      image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2 },
-      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
+    // Função para preencher os dados do pedido na tela de confirmação
+    function preencherDadosPedido() {
+      const pedido = lerLocalStorage("pedidoAtual");
 
-    // Gerando o PDF
-    html2pdf().from(container).set(opt).save().then(() => {
-      // Mostrar os botões novamente após gerar o PDF
-      botoes.forEach(botao => botao.style.display = 'inline-block');
+      if (pedido) {
+        // Exibir dados do cliente
+        document.getElementById('cliente-nome').textContent = pedido.cliente.nome || "Não informado";
+        document.getElementById('cliente-email').textContent = pedido.cliente.email || "Não informado";
+        document.getElementById('cliente-telefone').textContent = pedido.cliente.telefone || "Não informado";
+
+        // Exibir produtos
+        const produtosLista = document.getElementById('produtos-lista');
+        produtosLista.innerHTML = ""; // Limpar lista antes de desenhar
+        for (const idProduto in pedido.pedido) { 
+          const quantidade = pedido.pedido[idProduto];
+          const produto = obterDetalhesProduto(idProduto);
+          if (produto && quantidade) {
+            console.log("entrou");
+            const item = document.createElement('div');
+            item.textContent = `${produto.nome} (Quantidade: ${quantidade}), Preço Unitário: R$${produto.preco.toFixed(2)} `;
+            produtosLista.appendChild(item);
+          }
+        }
+
+        // Exibir serviços
+        const servicosLista = document.getElementById('servicos-lista');
+        servicosLista.innerHTML = ""; // Limpar lista antes de desenhar
+        pedido.servicos.forEach(servico => {
+          const item = document.createElement('div');
+          item.textContent = `${servico.nome}: R$${servico.preco.toFixed(2)}`;
+          servicosLista.appendChild(item);
+        });
+
+        // Exibir valor total
+        document.getElementById('valor-total').textContent = `Total: R$${pedido.valorTotal.toFixed(2)}`;
+      } else {
+        alert("Erro: Pedido não encontrado.");
+      }
+    }
+
+    // Função para gerar o PDF com html2pdf.js
+    document.getElementById('download-pdf').addEventListener('click', function () {
+      const container = document.getElementById('orcamento-container');
+      
+      // Ocultar os botões antes de gerar o PDF
+      const botoes = document.querySelectorAll('.btn-voltar, .btn-download');
+      botoes.forEach(botao => botao.style.display = 'none');
+
+      // Configurações do html2pdf
+      const opt = {
+        margin:       1,
+        filename:     'orcamento.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      // Gerando o PDF
+      html2pdf().from(container).set(opt).save().then(() => {
+        // Mostrar os botões novamente após gerar o PDF
+        botoes.forEach(botao => botao.style.display = 'inline-block');
+      });
     });
-  });
-  
-  // Inicializa a página de confirmação
-  preencherDadosPedido();
+    
+    // Inicializa a página de confirmação
+    preencherDadosPedido();
   </script>
 </body>
-</html>                               
+</html>
