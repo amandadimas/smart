@@ -68,7 +68,7 @@ export const catalogo = [
     marca: "Marca Movimento",
     nome: "Motor Portão Deslizante 220v DM08",
     preco: 900,
-    imagem: "motor.jpeg", 
+    imagem: "MOTOR.jpeg", 
     produtoComprar: true,
   },
 {
