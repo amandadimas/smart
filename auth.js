@@ -11,6 +11,7 @@ function criarUsuarioNoLocalStorage(username, password) {
     localStorage.setItem('usuarios', JSON.stringify(usuarios));
   
     alert('Usuário criado com sucesso');
+    
   }
   
   function autenticarUsuario(username, password) {
