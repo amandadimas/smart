@@ -125,6 +125,7 @@ export function renderizarProdutosCarrinho() {
   for (const idProduto in idsProdutoCarrinhoComQuantidade) {
     desenharProdutoNoCarrinho(idProduto);
   }
+  
 }
 
 export function adicionarAoCarrinho(idProduto) {
