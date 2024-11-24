@@ -12,6 +12,7 @@ function criarUsuarioNoLocalStorage(username, password) {
   
     alert('Usuário criado com sucesso');
     
+
   }
   
   function autenticarUsuario(username, password) {
