@@ -75,7 +75,7 @@ export const catalogo = [
     id: "10",
     marca: "Alarme",
     nome: "Instalação de Alarme de Segurança",
-    preco: 1150,
+    preco: 0,
     imagem: "alarme2.jpeg", 
     servico: true,
   },
